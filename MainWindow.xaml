@@ -1,0 +1,53 @@
+﻿<Window x:Class="DuckWalk.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DuckWalk"
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="{DynamicResource wbBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+       
+        <!-- Top Menu-->
+        <Menu Height="25" VerticalAlignment="Top" Background="{DynamicResource wbBackground}" ItemContainerStyle="{StaticResource wbMenu}">
+            <MenuItem Header="File" ItemContainerStyle="{StaticResource wbSubMenu}" Background="#FF1F1F1F">
+                <MenuItem x:Name="newTabMenuItem" Header="New Tab" Click="newTabMenuItem_Click"/>
+      
+            </MenuItem>
+        </Menu>
+        
+        <!-- Address Bar -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="bkBack"  Content="Back" Padding="10,0" Margin="0,0,10,0" Click="bkBack_Click"/>
+                <Button x:Name="bkForward" Content="Forward" Padding="10,0" Click="bkForward_Click"/>
+                <Button x:Name="bkRefresh" Content="Refresh" Padding="10,0" Click="bkRefresh_Click"/>
+            </StackPanel>
+
+            <!-- Address Bar -->
+            <TextBox x:Name="AddressBar" Grid.Column="1" Height="25" VerticalAlignment="Top" TextWrapping="NoWrap"/>
+        </Grid>
+
+
+        <!-- Tab Control -->
+        <TabControl x:Name="wbTabControl" Grid.Row="2" BorderThickness="0">
+            <TabItem Header="Blank Page" Loaded="TabItem_Loaded">
+                <wpf:ChromiumWebBrowser x:Name="defaultBrowser" Address="www.duckduckgo.com"/>
+            </TabItem>
+        </TabControl>
+        
+    </Grid>
+</Window>
