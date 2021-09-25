@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CefSharp;
+using CefSharp.Wpf;
 
 namespace DuckWalk
 {
@@ -22,6 +24,10 @@ namespace DuckWalk
     {
         int tabCount = 0;
 
+        TabItem currentTabItem = null;
+        ChromiumWebBrowser currentBrowser = null;
+        string defaultURL = "https://www.duckduckgo.com";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,34 +36,68 @@ namespace DuckWalk
         private void newTabMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabItem tabItem = new TabItem();
-            wbTabControl.Items.Add(tabItem);
+            ChromiumWebBrowser browser = new ChromiumWebBrowser();
+            browser.Name = "browser_" + tabCount;
+
+            tabControl.Items.Add(tabItem);
             tabItem.Name = "tab_" + tabCount;
             tabCount++;
 
+            tabItem.Content = browser;
+            browser.Address = defaultURL;
+
             tabItem.Header = $"New Blank Page ({tabCount})";
 
+            tabControl.SelectedItem = tabItem;
+
+            currentTabItem = tabItem;
+            currentBrowser = browser;
+            browser.Loaded += FinishedLoadingWebPage;
+
+        }
+
+        private void FinishedLoadingWebPage(object sender, RoutedEventArgs e)
+        {
+            var sndr = sender as ChromiumWebBrowser;
+
+            if (currentTabItem != null)
+            {
+               currentTabItem.Header = sndr.Address.Substring(8);
+            }
         }
 
         private void TabItem_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void bkForward_Click(object sender, RoutedEventArgs e)
         {
-            if (defaultBrowser.CanGoForward)
-                defaultBrowser.ForwardCommand.Execute(sender);
+            if (currentBrowser.CanGoForward)
+                currentBrowser.ForwardCommand.Execute(sender);
         }
 
         private void bkBack_Click(object sender, RoutedEventArgs e)
         {
-            if (defaultBrowser.CanGoBack)
-                defaultBrowser.BackCommand.Execute(sender);
+            if (currentBrowser.CanGoBack)
+                currentBrowser.BackCommand.Execute(sender);
         }
 
         private void bkRefresh_Click(object sender, RoutedEventArgs e)
         {
-            defaultBrowser.ReloadCommand.Execute(sender);
+            currentBrowser.ReloadCommand.Execute(sender);
+        }
+
+        private void wbTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (tabControl.SelectedItem != null)
+            {
+                currentTabItem = tabControl.SelectedItem as TabItem;
+            }
+
+            if (currentTabItem != null)
+            {
+                currentBrowser = currentTabItem.Content as ChromiumWebBrowser;
+            }
         }
     }
 }
