@@ -99,5 +99,27 @@ namespace DuckWalk
                 currentBrowser = currentTabItem.Content as ChromiumWebBrowser;
             }
         }
+
+        private void AddressBar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Search();
+            }
+        }
+
+        private void Search()
+        {
+            if(currentBrowser != null && AddressBar.Text != String.Empty)
+            {
+                currentBrowser.Address = $"{defaultURL}/?q={AddressBar.Text}";
+            }
+        }
+
+        private void settingMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settings= new SettingsWindow();
+            settings.ShowDialog();
+        }
     }
 }

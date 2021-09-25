@@ -26,6 +26,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\icons8-back-40.png" />
+    <None Remove="Images\icons8-back-65.png" />
+    <None Remove="Images\icons8-forward-40.png" />
+    <None Remove="Images\icons8-forward-65.png" />
+    <None Remove="Images\icons8-refresh-40.png" />
+    <None Remove="Images\icons8-refresh-65.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\icons8-back-40.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons8-forward-40.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons8-forward-65.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\icons8-back-65.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons8-refresh-40.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons8-refresh-65.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CefSharp.Common.NETCore" Version="93.1.140" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="93.1.140" />
   </ItemGroup>

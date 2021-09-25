@@ -18,34 +18,49 @@
         <Menu Height="25" VerticalAlignment="Top" Background="{DynamicResource wbBackground}" ItemContainerStyle="{StaticResource wbMenu}">
             <MenuItem Header="File" ItemContainerStyle="{StaticResource wbSubMenu}" Background="#FF1F1F1F">
                 <MenuItem x:Name="newTabMenuItem" Header="New Tab" Click="newTabMenuItem_Click"/>
-      
+                <Separator/>
+                <MenuItem x:Name="settingMenuItem" Header="Settings" Click="settingMenuItem_Click" />
             </MenuItem>
         </Menu>
         
         <!-- Address Bar -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition MinWidth="300" />
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="bkBack"  Content="Back" Padding="1,0" Margin="0,0,10,0" Click="bkBack_Click"/>
-                <Button x:Name="bkForward" Content="Forward" Padding="1,0" Margin="0,0,10,0" Click="bkForward_Click"/>
-                <Button x:Name="bkRefresh" Content="Refresh" Padding="1,0" Margin="0,0,10,0" Click="bkRefresh_Click"/>
+                <Button x:Name="bkBack" Width="32" Margin="0,0,10,0" BorderThickness="0" Padding="1,1" Background="{x:Null}" Click="bkBack_Click">
+                    <Viewbox Height="24" Width="24">
+                        <Image Source="/Images/icons8-back-40.png"/>
+                    </Viewbox>
+                </Button>
+                <Button x:Name="bkForward" Width="32" BorderThickness="0" Click="bkForward_Click" Background="{x:Null}">
+                    <Viewbox Height="24" Width="24">
+                        <Image Source="/Images/icons8-forward-40.png"/>
+                    </Viewbox>
+                             
+                </Button>
             </StackPanel>
 
+            <Button x:Name="bkRefresh" Width="32"  Margin="0,0,10,0" BorderThickness="0" HorizontalAlignment="Right" Click="bkRefresh_Click" Background="{x:Null}">
+                <Viewbox Height="24" Width="24">
+                    <Image Source="/Images/icons8-refresh-40.png"/>
+                </Viewbox>
+            </Button>
+
             <!-- Address Bar -->
-            <TextBox x:Name="AddressBar" Grid.Column="1" Height="25" VerticalAlignment="Top" Margin="20,0,0,0" TextWrapping="NoWrap"/>
+            <TextBox x:Name="AddressBar" Grid.Column="1" Height="25" VerticalAlignment="Top" TextWrapping="NoWrap" KeyDown="AddressBar_KeyDown"/>
         </Grid>
 
 
         <!-- Tab Control -->
-        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged">
-            <TabItem Header="Blank Page" Loaded="TabItem_Loaded">
-                <wpf:ChromiumWebBrowser x:Name="defaultBrowser" Address="www.duckduckgo.com"/>
+        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged" Padding="0">
+            <TabItem Header="Blank Page" Loaded="TabItem_Loaded" BorderThickness="0">
+                <wpf:ChromiumWebBrowser x:Name="defaultBrowser" Address="www.duckduckgo.com" Padding="0"/>
             </TabItem>
         </TabControl>
         
