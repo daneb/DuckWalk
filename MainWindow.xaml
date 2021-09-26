@@ -8,29 +8,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="{DynamicResource wbBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="37*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition Height="30"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-       
+
         <!-- Top Menu-->
-        <Menu Height="25" VerticalAlignment="Top" Background="{DynamicResource wbBackground}" ItemContainerStyle="{StaticResource wbMenu}">
+        <Menu Height="25" VerticalAlignment="Center" Background="{DynamicResource wbBackground}" ItemContainerStyle="{StaticResource wbMenu}" Grid.ColumnSpan="2">
             <MenuItem Header="File" ItemContainerStyle="{StaticResource wbSubMenu}" Background="#FF1F1F1F">
                 <MenuItem x:Name="newTabMenuItem" Header="New Tab" Click="newTabMenuItem_Click"/>
                 <Separator/>
                 <MenuItem x:Name="settingMenuItem" Header="Settings" Click="settingMenuItem_Click" />
             </MenuItem>
         </Menu>
-        
+
         <!-- Address Bar -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="300" />
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <!-- Buttons -->
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="bkBack" Width="32" Margin="0,0,10,0" BorderThickness="0" Padding="1,1" Background="{x:Null}" Click="bkBack_Click">
@@ -42,7 +46,7 @@
                     <Viewbox Height="24" Width="24">
                         <Image Source="/Images/icons8-forward-40.png"/>
                     </Viewbox>
-                             
+
                 </Button>
             </StackPanel>
 
@@ -58,11 +62,11 @@
 
 
         <!-- Tab Control -->
-        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged" Padding="0">
+        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged" Padding="0" Grid.ColumnSpan="2">
             <TabItem Header="Blank Page" Loaded="TabItem_Loaded" BorderThickness="0">
                 <wpf:ChromiumWebBrowser x:Name="defaultBrowser" Address="www.duckduckgo.com" Padding="0"/>
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Window>

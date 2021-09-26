@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuckWalk"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Settings" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TabControl>
-            <TabItem Header="TabItem" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="General" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox HorizontalAlignment="Left" Margin="15,29,0,0" VerticalAlignment="Top" Width="196"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="15,8,0,0" TextWrapping="Wrap" Text="Search Engines" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

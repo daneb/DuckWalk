@@ -31,6 +31,9 @@ namespace DuckWalk
         public MainWindow()
         {
             InitializeComponent();
+
+            DataTransfer dataTransfer= new DataTransfer();
+            dataTransfer.CreateXmlFile();
         }
 
         private void newTabMenuItem_Click(object sender, RoutedEventArgs e)
