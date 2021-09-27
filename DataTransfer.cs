@@ -11,7 +11,12 @@ namespace DuckWalk
 {
     public class DataTransfer
     {
-        string settingsFilePath = $"{System.AppDomain.CurrentDomain.BaseDirectory}\\settings.xml";
+        string settingsFilePath = String.Empty;
+
+        public DataTransfer()
+        {
+            settingsFilePath =  $"{System.AppDomain.CurrentDomain.BaseDirectory}\\settings.xml";
+        }
 
         /// <summary>
         /// Create the settings file.
@@ -19,7 +24,7 @@ namespace DuckWalk
         public void CreateXmlFile()
         {
 
-            if (!Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory))
+            if (Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory))
             { 
 
                 if (!File.Exists(settingsFilePath))
@@ -39,8 +44,6 @@ namespace DuckWalk
 
                     xmlWriter.Flush();
                     xmlWriter.Close();
-
-                    Process.Start(settingsFilePath);
                 }
             }
         }

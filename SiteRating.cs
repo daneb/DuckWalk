@@ -19,8 +19,6 @@ namespace DuckWalk
         public SiteRating()
         {
             API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? null;
-            if (API_KEY == null) MessageBox.Show("Missing Site Rating API Key");
-                
         }
 
         private string GetIP(string site)
@@ -53,7 +51,7 @@ namespace DuckWalk
             string ratingImage = String.Empty;
             int abuseConfidenceScore = 0;
 
-            if (ipAddress != null)
+            if (ipAddress != null && API_KEY != null)
                 abuseConfidenceScore = QueryRatingAPI(ipAddress);
             
             ratingImage = GetRatingImage(abuseConfidenceScore);

@@ -33,6 +33,7 @@
     <None Remove="Images\icons8-back-65.png" />
     <None Remove="Images\icons8-c-cute-48.png" />
     <None Remove="Images\icons8-d-cute-48.png" />
+    <None Remove="Images\icons8-duck-16.png" />
     <None Remove="Images\icons8-e-cute-48.png" />
     <None Remove="Images\icons8-forward-40.png" />
     <None Remove="Images\icons8-forward-65.png" />
@@ -56,6 +57,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\icons8-d-cute-48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icons8-duck-16.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\icons8-e-cute-48.png">

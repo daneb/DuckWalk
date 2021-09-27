@@ -32,8 +32,16 @@ namespace DuckWalk
         {
             InitializeComponent();
 
-            DataTransfer dataTransfer= new DataTransfer();
-            dataTransfer.CreateXmlFile();
+            if (Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") == null)
+            {
+                MessageBox.Show("Missing Site Rating API Key");
+                App.Current.Shutdown(1);
+            } 
+            else
+            {
+                DataTransfer dataTransfer= new DataTransfer();
+                dataTransfer.CreateXmlFile();
+            }
         }
 
         private void newTabMenuItem_Click(object sender, RoutedEventArgs e)

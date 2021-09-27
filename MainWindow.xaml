@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DuckWalk"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
-        Title="DuckWalk" Height="450" Width="800">
+        Title="DuckWalk" Height="450" Width="800" Icon="/Images/icons8-duck-16.png">
     <Grid Background="{DynamicResource wbBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12*"/>
