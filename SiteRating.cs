@@ -19,6 +19,8 @@ namespace DuckWalk
         public SiteRating()
         {
             API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? null;
+            if (API_KEY == null) MessageBox.Show("Missing Site Rating API Key");
+                
         }
 
         private string GetIP(string site)

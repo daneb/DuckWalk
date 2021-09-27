@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:DuckWalk"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="DuckWalk" Height="450" Width="800">
     <Grid Background="{DynamicResource wbBackground}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -19,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <!-- Top Menu-->
-        <Menu Height="25" VerticalAlignment="Center" Background="{DynamicResource wbBackground}" ItemContainerStyle="{StaticResource wbMenu}" Grid.ColumnSpan="2">
+        <Menu Height="25" VerticalAlignment="Center" Background="{DynamicResource wbBackground}" ItemContainerStyle="{StaticResource wbMenu}" Grid.ColumnSpan="3">
             <MenuItem Header="File" ItemContainerStyle="{StaticResource wbSubMenu}" Background="#FF1F1F1F">
                 <MenuItem x:Name="newTabMenuItem" Header="New Tab" Click="newTabMenuItem_Click"/>
                 <Separator/>
@@ -28,7 +29,7 @@
         </Menu>
 
         <!-- Address Bar -->
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="300" />
                 <ColumnDefinition Width="3*"/>
@@ -63,7 +64,7 @@
 
 
         <!-- Tab Control -->
-        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged" Padding="0" Grid.ColumnSpan="2">
+        <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged" Padding="0" Grid.ColumnSpan="3">
             <TabItem x:Name="LandingTabItem" Header="Welcome" Loaded="TabItem_Loaded" BorderThickness="0">
             </TabItem>
         </TabControl>
