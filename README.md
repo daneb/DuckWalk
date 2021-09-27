@@ -1,7 +1,7 @@
 ﻿# Duckwalk 
 A basic web browser
 
-![Video](Images/intro.mp4)
+![Video](https://youtu.be/ht_DNGmBwyo)
 
 ## Features
 
