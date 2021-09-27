@@ -25,6 +25,8 @@ A basic web browser written in C# and WPF. Click on image below to see it in act
 1. Settings does not change Default Search Engine. This is set to DuckDuckGo.
 2. There are no general settings.
 3. You can create new settings, save and load them.
+4. No unit or functional tests.
+5. No Clean Code Uncle Bob :(
 
 ## Get an API Key for Site Rating API
 You can register for a free key from [AbuseIPDB](https://www.abuseipdb.com/).
