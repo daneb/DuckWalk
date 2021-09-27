@@ -14,6 +14,8 @@ A basic web browser written in C# and WPF. Click on image below to see it in act
 1. Setting default search engine (settings files).
 1. Back, forward and refresh button
 1. Dual support address bar - sites and search
+1. Applications fails fast is no API Key
+1. 
 1. Site Rating images 
   ![A](/Images/icons8-a-cute-48.png)
   ![B](/Images/icons8-b-cute-48.png)
