@@ -6,6 +6,7 @@
     <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x86</Platforms>
+    <UserSecretsId>4ec3450e-92a2-4a58-9663-f7f5dd0d1654</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,6 +31,7 @@
     <None Remove="Images\icons8-back-65.png" />
     <None Remove="Images\icons8-forward-40.png" />
     <None Remove="Images\icons8-forward-65.png" />
+    <None Remove="Images\icons8-question-mark-48.png" />
     <None Remove="Images\icons8-refresh-40.png" />
     <None Remove="Images\icons8-refresh-65.png" />
   </ItemGroup>
@@ -50,6 +52,9 @@
     <Content Include="Images\icons8-back-65.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\icons8-question-mark-48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\icons8-refresh-40.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -61,6 +66,7 @@
   <ItemGroup>
     <PackageReference Include="CefSharp.Common.NETCore" Version="93.1.140" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="93.1.140" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>

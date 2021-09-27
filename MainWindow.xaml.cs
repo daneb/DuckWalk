@@ -26,7 +26,7 @@ namespace DuckWalk
 
         TabItem currentTabItem = null;
         ChromiumWebBrowser currentBrowser = null;
-        string defaultURL = "https://www.duckduckgo.com";
+        string landingPage = "https://www.duckduckgo.com";
 
         public MainWindow()
         {
@@ -47,26 +47,42 @@ namespace DuckWalk
             tabCount++;
 
             tabItem.Content = browser;
-            browser.Address = defaultURL;
+            browser.Address = landingPage;
 
             tabItem.Header = $"New Blank Page ({tabCount})";
 
             tabControl.SelectedItem = tabItem;
+            
+            browser.Loaded += FinishedLoadingWebPage;
+            browser.AddressChanged += Browser_AddressChanged;
 
             currentTabItem = tabItem;
             currentBrowser = browser;
-            browser.Loaded += FinishedLoadingWebPage;
 
+        }
+
+        private void Browser_AddressChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            SiteRating siteRating = new SiteRating();
+            var sndr = sender as ChromiumWebBrowser;
+
+            string rating = siteRating.RateSite(sndr.Address);
+            AddressBar.Text = sndr.Address;
+
+            currentBrowser = sndr;
+ 
         }
 
         private void FinishedLoadingWebPage(object sender, RoutedEventArgs e)
         {
             var sndr = sender as ChromiumWebBrowser;
+            AddressBar.Text = sndr.Address.ToString();
 
             if (currentTabItem != null)
             {
                currentTabItem.Header = sndr.Address.Substring(8);
             }
+            
         }
 
         private void TabItem_Loaded(object sender, RoutedEventArgs e)
@@ -115,7 +131,7 @@ namespace DuckWalk
         {
             if(currentBrowser != null && AddressBar.Text != String.Empty)
             {
-                currentBrowser.Address = $"{defaultURL}/?q={AddressBar.Text}";
+                currentBrowser.Address = $"{landingPage}/?q={AddressBar.Text}";
             }
         }
 
