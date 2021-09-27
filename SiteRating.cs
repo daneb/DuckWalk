@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DuckWalk
 {
@@ -17,13 +18,23 @@ namespace DuckWalk
 
         public SiteRating()
         {
-            API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? "f644c5a2ade5a89400165121695a9f239e678d22a4bd12337091263e1d1487cbf20fad9169207bc0";
+            API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? null;
         }
 
         private string GetIP(string site)
         {
-            var baseUrl = ExtractDomainNameFromURL(site);
-            return Dns.GetHostEntry(baseUrl).AddressList[0].ToString();
+            try
+            {
+                var baseUrl = ExtractDomainNameFromURL(site);
+                return Dns.GetHostEntry(baseUrl).AddressList[0].ToString();
+
+            }
+            catch (System.Net.Sockets.SocketException err)
+            {
+                MessageBox.Show($"Error: {err.Message}", "Search");
+            }
+
+            return null;
         }
 
         private string ExtractDomainNameFromURL(string Url)
@@ -36,11 +47,14 @@ namespace DuckWalk
 
         public string RateSite(string site)
         {
-            string rating = null;
             string ipAddress = GetIP(site);
+            string ratingImage = String.Empty;
+            int abuseConfidenceScore = 0;
 
-            int abuseConfidenceScore = QueryRatingAPI(ipAddress);
-            var ratingImage = GetRatingImage(abuseConfidenceScore);
+            if (ipAddress != null)
+                abuseConfidenceScore = QueryRatingAPI(ipAddress);
+            
+            ratingImage = GetRatingImage(abuseConfidenceScore);
 
             return ratingImage;
 

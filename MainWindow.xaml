@@ -64,7 +64,7 @@
 
         <!-- Tab Control -->
         <TabControl x:Name="tabControl" Grid.Row="2" BorderThickness="0" SelectionChanged="wbTabControl_SelectionChanged" Padding="0" Grid.ColumnSpan="2">
-            <TabItem x:Name="LandingTabItem" Header="Welcome" Loaded="TabItem_Loaded" BorderThickness="0" IsEnabled="False">
+            <TabItem x:Name="LandingTabItem" Header="Welcome" Loaded="TabItem_Loaded" BorderThickness="0">
             </TabItem>
         </TabControl>
 

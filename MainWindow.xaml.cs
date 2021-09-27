@@ -50,6 +50,7 @@ namespace DuckWalk
             var uriSource = new Uri(ratingImage, UriKind.Relative);
             RatingImage.Source = new BitmapImage(uriSource);
             AddressBar.Text = sndr.Address;
+            currentTabItem.Header = sndr.Address.Substring(8);
 
             currentBrowser = sndr;
  
@@ -58,13 +59,13 @@ namespace DuckWalk
         private void FinishedLoadingWebPage(object sender, RoutedEventArgs e)
         {
             var sndr = sender as ChromiumWebBrowser;
-            AddressBar.Text = sndr.Address.ToString();
+
+            if (sndr?.Address.ToString().Length > 0)
+                AddressBar.Text = sndr?.Address.ToString();
 
             if (currentTabItem != null)
-            {
-               currentTabItem.Header = sndr.Address.Substring(8);
-            }
-            
+                currentTabItem.Header = sndr?.Address.Substring(8);
+
         }
 
         private void TabItem_Loaded(object sender, RoutedEventArgs e)
@@ -115,8 +116,13 @@ namespace DuckWalk
         {
             if(currentBrowser != null && AddressBar.Text != String.Empty)
             {
-                currentBrowser.Address = $"{landingPage}/?q={AddressBar.Text}";
+                if (AddressBar.Text.StartsWith("http://") || AddressBar.Text.StartsWith("https://"))
+                    currentBrowser.Address = AddressBar.Text;
+                else
+                    currentBrowser.Address = $"{landingPage}/?q={AddressBar.Text}";
             }
+
+            currentTabItem.Header = AddressBar.Text;
         }
 
         private void settingMenuItem_Click(object sender, RoutedEventArgs e)
@@ -130,6 +136,7 @@ namespace DuckWalk
             if (tabItem == null)
             {
                 tabItem = new TabItem();
+                tabItem.Loaded += FinishedLoadingWebPage;
                 tabControl.Items.Add(tabItem);
                 tabItem.Name = "tab_" + tabCount;
                 tabCount++;
@@ -144,12 +151,12 @@ namespace DuckWalk
             tabItem.Header = $"New Blank Page ({tabCount})";
 
             tabControl.SelectedItem = tabItem;
-            
-            browser.Loaded += FinishedLoadingWebPage;
-            browser.AddressChanged += Browser_AddressChanged;
 
             currentTabItem = tabItem;
             currentBrowser = browser;
+
+            browser.Loaded += FinishedLoadingWebPage;
+            browser.AddressChanged += Browser_AddressChanged;
 
         }
 
