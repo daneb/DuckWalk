@@ -10,11 +10,16 @@ A basic web browser written in C# and WPF. Click on image below to see it in act
 
 ## Features
 1. Multi-Tab support.
-2. Site Rating using AbuseIPDB.
-3. Site Rating images ![A](/Images/icons8-a-cute-48.png).
-4. Setting default search engine (settings files).
-5. Back, forward and refresh button
-6. Dual support address bar - sites and search
+1. Site Rating using AbuseIPDB.
+1. Setting default search engine (settings files).
+1. Back, forward and refresh button
+1. Dual support address bar - sites and search
+1. Site Rating images 
+  ![A](/Images/icons8-a-cute-48.png)
+  ![B](/Images/icons8-b-cute-48.png)
+  ![C](/Images/icons8-c-cute-48.png)
+  ![D](/Images/icons8-d-cute-48.png)
+  ![E](/Images/icons8-e-cute-48.png)
 
 ## Caveats
 1. Settings does not change Default Search Engine. This is set to DuckDuckGo.
