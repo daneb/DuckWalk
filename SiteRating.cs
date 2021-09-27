@@ -17,7 +17,7 @@ namespace DuckWalk
 
         public SiteRating()
         {
-            API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? "f644c5a2ade5a89400165121695a9f239e678d22a4bd12337091263e1d1487cbf20fad9169207bc0";
+            API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? null;
         }
 
         private string GetIP(string site)
