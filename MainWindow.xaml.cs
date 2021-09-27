@@ -38,27 +38,7 @@ namespace DuckWalk
 
         private void newTabMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            TabItem tabItem = new TabItem();
-            ChromiumWebBrowser browser = new ChromiumWebBrowser();
-            browser.Name = "browser_" + tabCount;
-
-            tabControl.Items.Add(tabItem);
-            tabItem.Name = "tab_" + tabCount;
-            tabCount++;
-
-            tabItem.Content = browser;
-            browser.Address = landingPage;
-
-            tabItem.Header = $"New Blank Page ({tabCount})";
-
-            tabControl.SelectedItem = tabItem;
-            
-            browser.Loaded += FinishedLoadingWebPage;
-            browser.AddressChanged += Browser_AddressChanged;
-
-            currentTabItem = tabItem;
-            currentBrowser = browser;
-
+            NewBrowser();
         }
 
         private void Browser_AddressChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -66,7 +46,9 @@ namespace DuckWalk
             SiteRating siteRating = new SiteRating();
             var sndr = sender as ChromiumWebBrowser;
 
-            string rating = siteRating.RateSite(sndr.Address);
+            string ratingImage = siteRating.RateSite(sndr.Address);
+            var uriSource = new Uri(ratingImage, UriKind.Relative);
+            RatingImage.Source = new BitmapImage(uriSource);
             AddressBar.Text = sndr.Address;
 
             currentBrowser = sndr;
@@ -87,6 +69,8 @@ namespace DuckWalk
 
         private void TabItem_Loaded(object sender, RoutedEventArgs e)
         {
+            var landingPageTabItem = sender as TabItem;
+            NewBrowser(landingPageTabItem);
         }
 
         private void bkForward_Click(object sender, RoutedEventArgs e)
@@ -140,5 +124,34 @@ namespace DuckWalk
             SettingsWindow settings= new SettingsWindow();
             settings.ShowDialog();
         }
+
+        private void NewBrowser(TabItem tabItem = null)
+        {
+            if (tabItem == null)
+            {
+                tabItem = new TabItem();
+                tabControl.Items.Add(tabItem);
+                tabItem.Name = "tab_" + tabCount;
+                tabCount++;
+
+            }
+            ChromiumWebBrowser browser = new ChromiumWebBrowser();
+            browser.Name = "browser_" + tabCount;
+
+            tabItem.Content = browser;
+            browser.Address = landingPage;
+
+            tabItem.Header = $"New Blank Page ({tabCount})";
+
+            tabControl.SelectedItem = tabItem;
+            
+            browser.Loaded += FinishedLoadingWebPage;
+            browser.AddressChanged += Browser_AddressChanged;
+
+            currentTabItem = tabItem;
+            currentBrowser = browser;
+
+        }
+
     }
 }

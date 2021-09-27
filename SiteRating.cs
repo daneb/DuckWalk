@@ -17,7 +17,7 @@ namespace DuckWalk
 
         public SiteRating()
         {
-            API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? null;
+            API_KEY = Environment.GetEnvironmentVariable("ABUSEIPDB_API_KEY") ?? "f644c5a2ade5a89400165121695a9f239e678d22a4bd12337091263e1d1487cbf20fad9169207bc0";
         }
 
         private string GetIP(string site)
@@ -39,6 +39,17 @@ namespace DuckWalk
             string rating = null;
             string ipAddress = GetIP(site);
 
+            int abuseConfidenceScore = QueryRatingAPI(ipAddress);
+            var ratingImage = GetRatingImage(abuseConfidenceScore);
+
+            return ratingImage;
+
+        }
+
+        private int QueryRatingAPI(string ipAddress)
+        {
+            int rating = 0;
+            
             using (var httpClient = new HttpClient())
             {
 
@@ -53,11 +64,27 @@ namespace DuckWalk
                     var json = Task.Run(() => response.Content.ReadAsStringAsync()).Result;
                     Data result = JsonConvert.DeserializeObject<Data>(json);
 
-                    rating = result.abuseConfidenceScore.ToString();
+                    rating = result.abuseConfidenceScore;
                 }
             }
 
             return rating;
+
+        }
+
+        public string GetRatingImage(int abuseConfidenceScore)
+        {
+            var imagePath = abuseConfidenceScore switch
+            {
+                var n when n >= 80 => "/Images/icons8-e-cute-48.png",
+                var n when n >= 60 => "/Images/icons8-d-cute-48.png",
+                var n when n >= 40 => "/Images/icons8-c-cute-48.png",
+                var n when n >= 20 => "/Images/icons8-b-cute-48.png",
+                var n when n >= 0 => "/Images/icons8-a-cute-48.png",
+                _ => "/Images/icons8-question-mark-48.png"
+            };
+
+            return imagePath;
 
         }
     }
