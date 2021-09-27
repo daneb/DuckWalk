@@ -5,14 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuckWalk"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Settings" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="#FFE5E5E5" Loaded="Settings_Loaded">
     <Grid>
-        <TabControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="451*"/>
+            <ColumnDefinition Width="350*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.ColumnSpan="2">
             <TabItem Header="General" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
-                <Grid Background="#FFE5E5E5">
-                    <ComboBox HorizontalAlignment="Left" Margin="15,29,0,0" VerticalAlignment="Top" Width="196"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="15,8,0,0" TextWrapping="Wrap" Text="Search Engines" VerticalAlignment="Top"/>
-                </Grid>
+            </TabItem>
+            <TabItem Header="Search">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,0,0,5" TextWrapping="Wrap" Text="Search Engines" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="SearchEngineComboBox" HorizontalAlignment="Left"  Margin="0,0,0,5" VerticalAlignment="Top" Width="196"/>
+                    <GroupBox Header="Add Search Engine" Width="300" HorizontalAlignment="Left">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Name" Margin="0,0,0,10" />
+                            <TextBox x:Name="EngineNameBox" Width="196" HorizontalAlignment="Left" />
+                            <TextBlock Width="196" Text="DuckDuckGo" FontSize="10" Foreground="PaleVioletRed" HorizontalAlignment="Left" Margin="0,0,0,5" />
+                            <TextBlock Text="Engine Prefix" Margin="0,0,0,5" />
+                            <TextBox x:Name="EnginePrefixBox" Width="196" HorizontalAlignment="Left" />
+                            <TextBlock Width="196" Text="https://duckduckgo.com/?q=hello" FontSize="10" Foreground="PaleVioletRed" HorizontalAlignment="Left" Margin="0,0,0,20" />
+                            <Button x:Name="addSearchEngineBtn" Content="Add Search Engine" Padding="0,5" Opacity="0.99" Background="#FFE63F3F" Foreground="#FFF4F4F4" Click="addSearchEngineBtn_Click" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

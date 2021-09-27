@@ -26,5 +26,22 @@ namespace DuckWalk
         {
 
         }
+
+        private void addSearchEngineBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransfer dataTransfer= new DataTransfer();
+
+            if (EngineNameBox.Text.Length > 0 && EnginePrefixBox.Text.Length > 0)
+                if (dataTransfer.AddSearchEngine(EngineNameBox.Text, EnginePrefixBox.Text))
+                    MessageBox.Show("You added a search engine successfully", "Added Search Engine");
+        }
+
+        private void Settings_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTransfer dataTransfer= new DataTransfer();
+            var listOfSearchEngine = dataTransfer.GetSearchEngines();
+            listOfSearchEngine.ForEach(x => SearchEngineComboBox.Items.Add(x));
+
+        }
     }
 }
