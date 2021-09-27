@@ -11,7 +11,7 @@ A basic web browser written in C# and WPF. Click on image below to see it in act
 ## Features
 1. Multi-Tab support.
 2. Site Rating using AbuseIPDB.
-3. Site Rating images [![A]](/Images/icons8-cute-48.png).
+3. Site Rating images ![A](/Images/icons8-a-cute-48.png).
 4. Setting default search engine (settings files).
 5. Back, forward and refresh button
 6. Dual support address bar - sites and search
